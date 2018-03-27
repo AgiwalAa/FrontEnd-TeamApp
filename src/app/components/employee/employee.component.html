@@ -1,0 +1,9 @@
+<div>
+  <ul id="grouplist" class="list-group">
+    <li class="list-group-item" [ngClass]="{'active': employee === selectedEmployee}" (click)="listClick(employee)" *ngFor="let employee of employeeList">
+      {{ employee.name }}
+    </li>
+  </ul> 
+</div>
+<button style="margin-top: 30px" class="btn btn-secondary" (click)="createEmployee()">Create New Employee</button>
+<app-employee-details [employee]="selectedEmployee"></app-employee-details>

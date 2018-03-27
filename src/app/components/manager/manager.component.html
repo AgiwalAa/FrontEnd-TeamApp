@@ -1,0 +1,9 @@
+<div>
+  <ul id="grouplist" class="list-group">
+    <li class="list-group-item" [ngClass]="{'active': manager === selectedManager}" (click)="listClick(manager)" *ngFor="let manager of managerList">
+      {{ manager.name }}
+    </li>
+  </ul> 
+</div>
+<button style="margin-top: 30px" class="btn btn-secondary" (click)="createManager()">Create New manager</button>
+<app-manager-details [manager]="selectedManager"></app-manager-details>

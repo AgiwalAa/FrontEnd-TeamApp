@@ -1,0 +1,49 @@
+<div *ngIf="employee">
+<form  #empForm="ngForm">
+<div id="Employee" style="margin-top: 30px">
+<div class="form-group">
+  <label class="control-label">Name</label>
+  <input type="text" [(ngModel)]="employee.name" name="employee.name" required class="form-control" #EmpName="ngModel">
+</div>
+<div *ngIf="EmpName.invalid && (EmpName.dirty || EmpName.touched)" class="alert alert-danger">
+  <div *ngIf="EmpName.errors.required">
+    Name is required.
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label" style="margin-right: 20px">Manager</label>
+    <select name="employee.managerId" [(ngModel)]="employee.managerId" required #manager="ngModel">
+        <option *ngFor="let manager of managerList" value= {{manager._id}}>
+          {{manager.name}}
+        </option>
+      </select>
+</div>
+<div *ngIf="manager.invalid && (manager.dirty || manager.touched)" class="alert alert-danger">
+  <div *ngIf="manager.errors.required">
+    Manager is required.
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label">Email</label>
+  <input type="email" [(ngModel)]="employee.email" name="employee.email" required class="form-control" #EmpEmail="ngModel">
+</div>
+<div *ngIf="EmpEmail.invalid && (EmpEmail.dirty || EmpEmail.touched)" class="alert alert-danger">
+  <div *ngIf="EmpEmail.errors.required">
+    Email is required.
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label">Mobile</label>
+  <input type="number" [(ngModel)]="employee.mobile"  name="employee.mobile" class="form-control" #mobile="ngModel">
+</div>
+
+<input type="submit" class="btn btn-primary" *ngIf="!employee._id" value="Submit" (click)="createEmployee(employee)" [disabled]="empForm.invalid">
+<input type="submit" class="btn btn-info" *ngIf="employee._id" value="Update" (click)="updateEmployee(employee)" [disabled]="empForm.invalid">
+<input type="submit" class="btn btn-info" value="Cancel" (click)="cancel()">
+<input type="submit" class="btn btn-danger" *ngIf="employee._id" value="Delete" (click)="deleteEmployee(employee)" [disabled]="empForm.invalid">
+</div>
+</form>
+</div>
